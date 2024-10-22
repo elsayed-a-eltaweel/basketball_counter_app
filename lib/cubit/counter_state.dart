@@ -4,14 +4,8 @@ sealed class CounterState {
   const CounterState();
 }
 
-final class CounterInitial extends CounterState {
-  const CounterInitial();
-}
+final class CounterInitial extends CounterState {}
 
-final class CounterAIncrease extends CounterState {
-  CounterAIncrease();
-}
+final class CounterAIncrease extends CounterState {}
 
-final class CounterBIncrease extends CounterState {
-  CounterBIncrease();
-}
+final class CounterBIncrease extends CounterState {}

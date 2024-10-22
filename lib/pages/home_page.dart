@@ -1,5 +1,7 @@
+import 'package:basketball_counter_app/cubit/counter_cubit.dart';
 import 'package:basketball_counter_app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -21,12 +23,29 @@ class HomePage extends StatelessWidget {
               Column(
                 children: [
                   const Text('Team A', style: TextStyle(fontSize: 32)),
-                  const Text('0', style: TextStyle(fontSize: 128)),
-                  CustomButton(onPressed: () {}, buttonText: 'Add 1 Point'),
+                  BlocBuilder<CounterCubit, CounterState>(
+                    builder: (context, state) {
+                      return Text('${context.read<CounterCubit>().teamAPoints}',
+                          style: const TextStyle(fontSize: 128));
+                    },
+                  ),
+                  CustomButton(
+                      onPressed: () => context
+                          .read<CounterCubit>()
+                          .teamIncrease(team: 'A', value: 1),
+                      buttonText: 'Add 1 Point'),
                   const SizedBox(height: 8),
-                  CustomButton(onPressed: () {}, buttonText: 'Add 2 Point'),
+                  CustomButton(
+                      onPressed: () => context
+                          .read<CounterCubit>()
+                          .teamIncrease(team: 'A', value: 2),
+                      buttonText: 'Add 2 Point'),
                   const SizedBox(height: 8),
-                  CustomButton(onPressed: () {}, buttonText: 'Add 3 Point')
+                  CustomButton(
+                      onPressed: () => context
+                          .read<CounterCubit>()
+                          .teamIncrease(team: 'A', value: 3),
+                      buttonText: 'Add 3 Point')
                 ],
               ),
               const SizedBox(
@@ -40,19 +59,36 @@ class HomePage extends StatelessWidget {
               Column(
                 children: [
                   const Text('Team B', style: TextStyle(fontSize: 32)),
-                  const Text('0', style: TextStyle(fontSize: 128)),
-                  CustomButton(onPressed: () {}, buttonText: 'Add 1 Point'),
+                  BlocBuilder<CounterCubit, CounterState>(
+                    builder: (context, state) {
+                      return Text('${context.read<CounterCubit>().teamBPoints}',
+                          style: const TextStyle(fontSize: 128));
+                    },
+                  ),
+                  CustomButton(
+                      onPressed: () => context
+                          .read<CounterCubit>()
+                          .teamIncrease(team: 'B', value: 1),
+                      buttonText: 'Add 1 Point'),
                   const SizedBox(height: 8),
-                  CustomButton(onPressed: () {}, buttonText: 'Add 2 Point'),
+                  CustomButton(
+                      onPressed: () => context
+                          .read<CounterCubit>()
+                          .teamIncrease(team: 'B', value: 2),
+                      buttonText: 'Add 2 Point'),
                   const SizedBox(height: 8),
-                  CustomButton(onPressed: () {}, buttonText: 'Add 3 Point')
+                  CustomButton(
+                      onPressed: () => context
+                          .read<CounterCubit>()
+                          .teamIncrease(team: 'B', value: 3),
+                      buttonText: 'Add 3 Point')
                 ],
               ),
             ],
           ),
           const SizedBox(height: 80),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () => context.read<CounterCubit>().reset(),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.orange,
               foregroundColor: Colors.black,
